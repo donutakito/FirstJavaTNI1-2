@@ -1,0 +1,26 @@
+package Customer;
+
+public class Regular extends Customer {
+
+    Regular(String name,double billAmount)
+    {
+        super(name,billAmount);
+    }
+
+    boolean isDiscount()
+    {
+      return super.getBillAmount()>=500;
+    }
+
+    @Override
+    double calculateFinalBill() {
+        return isDiscount() ? super.getBillAmount()-(super.getBillAmount()*0.05) : super.getBillAmount();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                (isDiscount()?"\nYou get discount 5%":"")+
+                "\nTotal price: "+calculateFinalBill();
+    }
+}
